@@ -13,7 +13,7 @@ public abstract class ShortyVisitor extends Shorty implements ExhibitionVisitor 
 
     @Override
     public void lookAtThePortrait(Portrait portrait) {
-        System.out.print(getName() + " смотрит на " + portrait + ": ");
+        System.out.print(this + " смотрит на " + portrait + ": ");
         if (this.equals(portrait.getPortrayed()) && portrait.isCaricature()){
             System.out.println(Phrases.TAKEOFFENCE.getPhrase());
         }

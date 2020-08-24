@@ -14,16 +14,9 @@ public abstract class Shorty {
         this.name = name;
     }
 
-    public String getName(){
-        try {
-            if (name == null || name.equals("")){
-                throw new NoNameException();
-            }
-        }
-        catch (NoNameException e){
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-            name = "Безымянный";
+    public String getName() throws NoNameException{
+        if (name == null || name.equals("")){
+            throw new NoNameException();
         }
         return name;
     }
@@ -41,16 +34,24 @@ public abstract class Shorty {
         if (this == other) return true;
         if (other == null) return false;
         if (getClass() != other.getClass()) return false;
-        return (((Shorty) other).getName()).equals(getName());
+        return (other.toString()).equals(toString());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getProfession());
+        return Objects.hash(toString());
     }
 
     @Override
     public String toString() {
-        return getProfession() + " " + getName();
+        try{
+            return getProfession() + " " + getName();
+        }
+        catch (NoNameException e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            name = "Безымянный";
+            return getProfession() + " " + name;
+        }
     }
 }

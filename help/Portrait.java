@@ -60,10 +60,10 @@ public class Portrait{
     @Override
     public String toString() {
         if (caricature) {
-            return "Портрет " + portrayed.getName() + ", который "
-                    + portrayed.makeFunOfShorty() + ", написанный " + author.getName();
+            return "Портрет " + portrayed + ", который "
+                    + portrayed.makeFunOfShorty() + ", написанный " + author;
         } else {
-            return "Портрет " + portrayed.getName() + ", написанный " + author.getName();
+            return "Портрет " + portrayed + ", написанный " + author;
         }
     }
 }

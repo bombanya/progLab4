@@ -8,15 +8,22 @@ public class Main {
 
     public static void main(String[] args) {
         Exhibition hermitage = new Exhibition();
-        Doctor pillman = new Doctor("Пилюлькин", ThermometerTypes.MERCURIAL);
         Unemployed neznaika = new Unemployed("Незнайка");
         Gourmet donut = new Gourmet("Пончик");
         Hunter pellet = new Hunter("Пулька", "Булька");
         Runner bustler = new Runner("Торопыжка");
-        Doctor doc = new Doctor(null, ThermometerTypes.ELECTRONIC);
 
-        ArrayList<Portrait> portraits = neznaika.makePortraits(new Shorty[]{pillman, donut, pellet, bustler, doc});
-        ArrayList<Portrait> caricatures = neznaika.makeCaricatures(new Shorty[]{pillman, donut, pellet, bustler, doc});
+        Doctor.Thermometer gradusnik = new Doctor.Thermometer(ThermometerTypes.ELECTRONIC);
+        gradusnik.measureTemperature(neznaika);
+        gradusnik.measureTemperature(donut);
+
+        Doctor doc = new Doctor(null, ThermometerTypes.ELECTRONIC);
+        Doctor pillman = new Doctor("Пилюлькин", ThermometerTypes.MERCURIAL);
+
+        Hunter.Doggy dog = pellet.new Doggy("Бобик");
+
+        ArrayList<Portrait> portraits = neznaika.makePortraits(pillman, donut, pellet, bustler, doc);
+        ArrayList<Portrait> caricatures = neznaika.makeCaricatures(pillman, donut, pellet, bustler, doc);
         hermitage.addPortraits(portraits);
         hermitage.addPortraits(caricatures);
         hermitage.addVisitor(pillman);
@@ -24,6 +31,7 @@ public class Main {
         hermitage.addVisitor(pellet);
         hermitage.addVisitor(bustler);
         hermitage.addVisitor(doc);
+        hermitage.addVisitor(dog);
         hermitage.start();
     }
 }
